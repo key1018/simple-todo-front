@@ -71,7 +71,7 @@ export function signin(userDTO) {
         return; // 에러 발생 시 리다이렉트를 막음
       }
       // token이 존재하는 경우 Todo 화면으로 리다이렉트
-      window.location.href = '/todo';
+      window.location.href = '/';
     }
   });
 }

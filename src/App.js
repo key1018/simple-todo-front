@@ -37,11 +37,25 @@ function App() {
   //     );
   // }, []);
 
+  // useEffect(() => {
+  //   call('/todo', 'GET', null).then((response) => {
+  //     setItems(response.data);
+  //     setLoading(false);
+  //   });
+  // }, []);
+
   useEffect(() => {
-    call('/todo', 'GET', null).then((response) => {
-      setItems(response.data);
-      setLoading(false);
-    });
+    call('/todo', 'GET', null)
+      .then((response) => {
+        console.log('Todos fetched:', response.data);
+        setItems(response.data);
+        setLoading(false);
+      })
+      .catch((error) => {
+        console.error('Error fetching todos:', error);
+        setItems([]);
+        setLoading(false);
+      });
   }, []);
 
   const addItem = (item) => {
