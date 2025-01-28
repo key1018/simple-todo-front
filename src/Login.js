@@ -1,7 +1,8 @@
 import React from 'react';
 import { Container, Grid, Typography, TextField, Button } from '@mui/material';
 import { Link } from 'react-router-dom';
-import { signin } from './service/ApiService';
+import { signin, socialLogin } from './service/ApiService';
+import { ConnectingAirportsOutlined } from '@mui/icons-material';
 
 function Login() {
   const handleSubmit = (event) => {
@@ -11,6 +12,11 @@ function Login() {
     const password = data.get('password');
     // ApiService의 signin 메서드를 사용해 로그인
     signin({ username: username, password: password });
+  };
+
+  const handleSocialLogin = (provider) => {
+    console.log(provider);
+    socialLogin(provider);
   };
 
   return (
@@ -52,6 +58,16 @@ function Login() {
           <Grid item xs={12}>
             <Button type="submit" fullWidth variant="contained" color="primary">
               로그인
+            </Button>
+          </Grid>
+          <Grid item xs={12}>
+            <Button
+              onClick={() => handleSocialLogin('github')}
+              fullWidth
+              variant="contained"
+              style={{ backgroundColor: '#000' }}
+            >
+              깃허브로 로그인하기
             </Button>
           </Grid>
           <Grid item>
